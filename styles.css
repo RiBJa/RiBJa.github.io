@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.thermostat-container {
+    width: 100%;
+    max-width: 400px;
+}
+
+.thermostat {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.display {
+    padding: 20px;
+}
+
+.current-info {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.current-temp {
+    font-size: 48px;
+    font-weight: bold;
+    color: #333;
+}
+
+.room-humidity {
+    color: #666;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.set-temp {
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.set-temp-label {
+    text-align: center;
+    color: #666;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.set-temp-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#target-temp {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+}
+
+.temp-adjust {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s;
+    /* @tweakable adjust button color */
+    background-color: #4CAF50;
+}
+
+.temp-adjust:hover {
+    background-color: #45a049;
+}
+
+.mode-controls, .fan-controls {
+    margin-bottom: 20px;
+}
+
+.mode-label, .fan-label {
+    color: #666;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.mode-options, .fan-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.mode-btn, .fan-btn {
+    flex: 1;
+    min-width: 70px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: white;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.mode-btn.active, .fan-btn.active {
+    background-color: #4CAF50;
+    color: white;
+    border-color: #4CAF50;
+}
+
+.status {
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+    margin-top: 20px;
+}
+
+#status-message {
+    margin-bottom: 5px;
+}
+
+#last-updated {
+    color: #999;
+}
+
+/* Active state for buttons */
+.mode-btn:hover, .fan-btn:hover {
+    background-color: #f5f5f5;
+}
+
+/* @tweakable active button hover color */
+.mode-btn.active:hover, .fan-btn.active:hover {
+    background-color: #45a049;
+}
