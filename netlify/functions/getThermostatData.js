@@ -1,7 +1,8 @@
-const fetch = require('node-fetch');  // Required to make HTTP requests in serverless functions
-
 exports.handler = async (event, context) => {
   try {
+    // Dynamically import node-fetch
+    const { default: fetch } = await import('node-fetch');
+    
     // Fetch the thermostat data over HTTP (since it's on your local network)
     const response = await fetch('http://192.168.4.29/query/info');  // Your thermostat API endpoint
     if (!response.ok) {
