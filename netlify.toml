@@ -1,2 +1,0 @@
-[build]
-  functions = "netlify/functions"  # This tells Netlify where to find your serverless functions folder.
