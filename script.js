@@ -82,31 +82,32 @@ function updateStatus(message) {
 }
 
 async function fetchThermostatData() {
-    try {
-        updateStatus('Fetching thermostat data...');
-        const response = await fetch(`http://${THERMOSTAT_IP}/query/info`);
-        if (!response.ok) throw new Error('Failed to fetch thermostat data');
-        
-        const data = await response.json();
-        thermostatData = {
-            currentTemp: data.spacetemp,
-            humidity: data.hum,
-            targetTemp: data.heattemp, // Use appropriate value based on mode
-            mode: getModeFromCode(data.mode),
-            fan: getFanFromCode(data.fan),
-            lastUpdated: new Date().toISOString()
-        };
-        
-        // Update Firebase
-        thermostatRef.set(thermostatData);
-        
-        updateStatus('Connected');
-        updateUI();
-    } catch (error) {
-        console.error('Error fetching thermostat data:', error);
-        updateStatus('Connection error. Retrying...');
-    }
+  try {
+    updateStatus('Fetching thermostat data...');
+    const response = await fetch('/.netlify/functions/getThermostatData');  // Serverless function endpoint
+    if (!response.ok) throw new Error('Failed to fetch thermostat data');
+
+    const data = await response.json();
+    thermostatData = {
+      currentTemp: data.spacetemp,
+      humidity: data.hum,
+      targetTemp: data.heattemp, // Use appropriate value based on mode
+      mode: getModeFromCode(data.mode),
+      fan: getFanFromCode(data.fan),
+      lastUpdated: new Date().toISOString()
+    };
+
+    // Update Firebase
+    thermostatRef.set(thermostatData);
+    
+    updateStatus('Connected');
+    updateUI();
+  } catch (error) {
+    console.error('Error fetching thermostat data:', error);
+    updateStatus('Connection error. Retrying...');
+  }
 }
+
 
 function getModeFromCode(code) {
     // Venstar mode codes: 0=off, 1=heat, 2=cool, 3=auto
